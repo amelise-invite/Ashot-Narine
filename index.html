@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="hy">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0b0b0b" />
+  <meta name="robots" content="index,follow" />
+  <title>Աշոտ և Նարինե — Հարսանեկան հրավիրատոմս</title>
+
+  <!-- Open Graph (ONE image only) -->
+  <link rel="canonical" href="https://amelise-invite.github.io/Ashot-Narine/" />
+  <meta property="og:site_name" content="Amélise Invite" />
+  <meta property="og:locale" content="hy_AM" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://amelise-invite.github.io/Ashot-Narine/" />
+  <meta property="og:title" content="Աշոտ և Նարինե — Հարսանեկան հրավիրատոմս" />
+  <meta property="og:description" content="Սրտանց հրավիրում ենք Ձեզ մեզ հետ միասին տոնելու մեր կյանքի գեղեցիկ օրը՝ հոկտեմբերի 20-ին։" />
+  <!-- NEW preview (full image, letterboxed to 1200×630) -->
+  <meta property="og:image" content="https://amelise-invite.github.io/Ashot-Narine/assets/preview-full-1200x630.jpg?v=2" />
+  <meta property="og:image:secure_url" content="https://amelise-invite.github.io/Ashot-Narine/assets/preview-full-1200x630.jpg?v=2" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Աշոտ և Նարինե — հարսանեկան հրավիրատոմսի նախադիտում" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Աշոտ և Նարինե — Հարսանեկան հրավիրատոմս" />
+  <meta name="twitter:description" content="Սիրով հրավիրում ենք հոկտեմբերի 20-ին։" />
+  <meta name="twitter:image" content="https://amelise-invite.github.io/Ashot-Narine/assets/preview-full-1200x630.jpg?v=2" />
+
+  <!-- Optional fallback for very old parsers -->
+  <link rel="image_src" href="https://amelise-invite.github.io/Ashot-Narine/assets/preview-full-1200x630.jpg?v=2" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Noto+Sans+Armenian:wght@300;400;600;700&family=Noto+Serif+Armenian:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Preload hero images (mobile + desktop) -->
+  <link rel="preload" as="image" href="assets/hero1.jpg">
+  <link rel="preload" as="image" href="assets/hero2.jpg">
+  <link rel="preload" as="image" href="assets/hero3.jpg">
+  <link rel="preload" as="image" href="assets/hero1-desktop.jpg" media="(min-width:1024px)">
+  <link rel="preload" as="image" href="assets/hero2-desktop.jpg" media="(min-width:1024px)">
+  <link rel="preload" as="image" href="assets/hero3-desktop.jpg" media="(min-width:1024px)">
+
+  <style>
+    :root{
+      --bg:#0b0b0b;
+      --paper:#ffffff;
+      --ink:#1c1c1c;
+      --muted:#6e6e6e;
+      --ring:#e8e0d9;
+      --gold:#c7aa72;
+      --radius:18px;
+      --safe-top: env(safe-area-inset-top);
+      --safe-bottom: env(safe-area-inset-bottom);
+      --shadow:0 10px 30px rgba(0,0,0,.08);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; background:var(--bg); color:#fff;
+      font-family:"Noto Sans Armenian", system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    }
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%; display:block}
+    .container{width:min(1080px,92vw); margin:0 auto}
+
+    /* ===== HERO (Carousel) ===== */
+    .hero{position:relative; height:100svh; min-height:560px; overflow:hidden; isolation:isolate;}
+    .slides{position:absolute; inset:0;}
+    .slide{
+      position:absolute; inset:0;
+      background:#111 center/cover no-repeat;
+      opacity:0; transition:opacity .6s ease;
+      filter:contrast(1.02) saturate(1.02);
+    }
+    .slide.active{opacity:1}
+    /* mobile / default backgrounds */
+    .s1{ background-image:url('assets/hero1.jpg'); background-position:center center; }
+    .s2{ background-image:url('assets/hero2.jpg'); background-position:center center; }
+    .s3{ background-image:url('assets/hero3.jpg'); background-position:center center; }
+    /* desktop overrides */
+    @media (min-width:1024px){
+      .s1{ background-image:url('assets/hero1-desktop.jpg'); }
+      .s2{ background-image:url('assets/hero2-desktop.jpg'); }
+      .s3{ background-image:url('assets/hero3-desktop.jpg'); }
+    }
+
+    .hero::after{content:""; position:absolute; inset:0; background:linear-gradient(to bottom, rgba(0,0,0,.45), rgba(0,0,0,.55)); pointer-events:none;}
+    .hero-inner{position:relative; z-index:3; height:100%; display:grid; place-items:center; text-align:center; padding:calc(24px + var(--safe-top)) 20px calc(24px + var(--safe-bottom)); gap:8px;}
+    .monogram{font-family:"Cinzel Decorative","Noto Serif Armenian",serif;font-weight:700;letter-spacing:.08em;font-size:clamp(56px, 9vw, 120px);line-height:1;color:#fff;text-shadow:0 10px 28px rgba(0,0,0,.55), 0 2px 6px rgba(0,0,0,.35);}
+    .names{font-family:"Noto Serif Armenian",serif; font-size:clamp(16px,3.2vw,28px); margin-top:4px; color:#fff;}
+    .date-row{position:absolute; left:0; right:0; top:calc(10px + var(--safe-top)); display:flex; align-items:center; gap:16px; padding:0 26px; z-index:4;}
+    .hr{flex:1; height:2px; background:rgba(255,255,255,.6)}
+    .date{font-family:"Noto Serif Armenian",serif; font-size:clamp(16px,2.8vw,24px); color:#fff;}
+
+    /* Audio Btn */
+    .audio{
+      position:absolute; right:26px; bottom:86px;
+      width:54px; height:54px; border-radius:50%;
+      border:2px solid #fff; display:grid; place-items:center;
+      cursor:pointer; user-select:none;
+      background:rgba(0,0,0,.35); backdrop-filter:blur(8px); z-index:4;
+      transition:border-color .2s ease;
+    }
+    .bars{display:inline-grid; grid-template-columns:repeat(4,4px); gap:3px; align-items:end; height:14px}
+    .bar{width:4px; height:4px; background:#fff; border-radius:2px; animation:bars 1s ease-in-out infinite; opacity:.9}
+    .bar:nth-child(2){animation-delay:.12s}
+    .bar:nth-child(3){animation-delay:.24s}
+    .bar:nth-child(4){animation-delay:.36s}
+    @keyframes bars{0%,100%{height:4px}50%{height:14px}}
+
+    /* Carousel controls */
+    .hero-nav{
+      position:absolute; inset:auto 0 28px 0; display:flex; justify-content:center; gap:10px; z-index:4;
+    }
+    .dot{
+      width:10px; height:10px; border-radius:50%; border:2px solid #fff; background:transparent; opacity:.8;
+      cursor:pointer; transition:transform .15s ease, background .2s;
+    }
+    .dot.active{ background:#fff; transform:scale(1.1); }
+
+    .arrow{
+      position:absolute; top:50%; transform:translateY(-50%);
+      width:44px; height:44px; border-radius:50%; border:1.5px solid rgba(255,255,255,.9);
+      color:#fff; background:rgba(0,0,0,.28); display:grid; place-items:center; z-index:4; cursor:pointer;
+      backdrop-filter:blur(6px);
+    }
+    .arrow:hover{background:rgba(0,0,0,.38)}
+    .arrow.prev{left:16px}
+    .arrow.next{right:16px}
+
+    section{padding:54px 0; background:#fff; color:var(--ink)}
+    .title-serif{font-family:"Noto Serif Armenian",serif; text-align:center; font-size:clamp(22px,3.8vw,36px); margin:0 0 12px}
+    .countdown{display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:12px; width:min(840px,92vw); margin:12px auto 0}
+    .cd-item{border:1px solid var(--ring); border-radius:16px; padding:16px; text-align:center}
+    .cd-num{font:800 28px/1 "Noto Sans Armenian"; letter-spacing:.02em}
+    .cd-lab{margin-top:6px; color:var(--muted); font-weight:700; font-size:12px; text-transform:uppercase; letter-spacing:.12em}
+
+    .greeting{background:#fff; color:var(--ink); padding:28px 0 18px; text-align:center}
+    .greeting .lead{font-family:"Noto Serif Armenian",serif; font-size:clamp(24px,4vw,40px); margin:0 0 10px}
+    .greeting .sub{color:#666; max-width:900px; margin:0 auto; font-size:clamp(14px,2vw,18px)}
+
+    .divider{background:#fff; color:var(--ink); padding:24px 0 10px}
+    .divider .mark{width:min(260px,60vw); margin:0 auto; opacity:.9;}
+    .divider .mark img{width:100%; height:auto; display:block}
+
+    .dateband-sec{background:#fff; color:var(--ink); padding:6px 0 28px}
+    .dateband{display:flex; align-items:center; gap:18px; justify-content:center; width:min(760px,92vw); margin:0 auto}
+    .dateband .line{flex:1; height:2px; background:#d7d7d7}
+    .dateband .pill{font-family:"Noto Serif Armenian",serif; padding:8px 20px; border:2px solid #d7d7d7; border-radius:999px}
+    .dateband .day{font:700 32px/1 "Noto Sans Armenian"}
+
+    .calendar{background:#fff; color:var(--ink); padding:40px 0 56px}
+    .calendar .sub{opacity:.75; text-align:center; margin-top:-4px}
+    .cal-img{width:min(720px,92vw); margin:26px auto 0}
+    .cal-img img{width:100%; aspect-ratio:7/6; object-fit:cover; border-radius:16px; border:1px solid var(--ring); box-shadow:var(--shadow); background:#f6f6f6;}
+
+    .schedule{background:#0e0e0e; color:#fff; padding:56px 0}
+    .schedule .when{display:flex; justify-content:center; align-items:center; gap:18px; margin:0 0 18px}
+    .when .hr{background:rgba(255,255,255,.6)}
+    .when .d{font-family:"Noto Serif Armenian",serif; font-size:clamp(18px,3.2vw,28px)}
+    .timeline{display:grid; grid-template-columns:repeat(2, minmax(220px,1fr)); gap:18px; width:min(900px,94vw); margin:26px auto 0}
+    .card{border-radius:16px; border:1px solid rgba(255,255,255,.14); background:rgba(255,255,255,.05); padding:18px; text-align:center; box-shadow:var(--shadow)}
+    .icon{height:54px; margin:0 auto 8px; opacity:.9}
+    .time{font:700 22px/1 "Noto Sans Armenian"; letter-spacing:.02em}
+    .place{opacity:.95; margin-top:4px}
+    .addr{opacity:.85; font-size:14px}
+    .link{display:inline-block; margin-top:8px; text-decoration:underline}
+    @media (max-width: 768px){ .timeline{grid-template-columns:1fr;} }
+
+    .venues{background:#fff; color:var(--ink)}
+    .vgrid{width:min(900px,92vw); margin:22px auto 0; display:grid; grid-template-columns:1fr; gap:36px}
+    .venue{display:grid; gap:12px; justify-items:center}
+    .venue img{width:min(660px,100%); aspect-ratio:16/10; object-fit:cover; border-radius:16px; border:1px solid var(--ring)}
+    .btn{display:inline-block; padding:12px 18px; border-radius:999px; border:1px solid var(--ink); font-weight:700; text-decoration:none; background:#fff;}
+    .btn.dark{background:#111; color:#fff; border-color:#111}
+
+    .rsvp{background:#fff; color:var(--ink)}
+    .form{width:min(900px,92vw); margin:18px auto 0; display:grid; gap:16px}
+    .row{display:grid; grid-template-columns:1fr; gap:12px}
+    @media (min-width:820px){ .row{grid-template-columns:1fr 1fr} }
+    .field{width:100%; padding:14px 16px; border-radius:999px; border:1px solid var(--ring); font:600 14px "Noto Sans Armenian"; outline:none; background:#fff;}
+    .field:focus{border-color:var(--gold); box-shadow:0 0 0 4px rgba(199,170,114,.18)}
+    .radio{display:flex; align-items:center; gap:12px; flex-wrap:wrap}
+    .radio label{display:flex; align-items:center; gap:8px; cursor:pointer}
+    .submit{justify-self:center; margin-top:6px}
+
+    .confirm-note{background:#fff; color:var(--ink); padding:0 0 32px}
+    .confirm-note .txt{width:min(900px,92vw); margin:0 auto; text-align:center; color:#555; font-size:clamp(14px,2vw,17px)}
+
+    .details .note{width:min(900px,92vw); margin:10px auto 0; font-size:16px; line-height:1.65; text-align:center; color:var(--ink)}
+
+    .contact{background:#0e0e0e; color:#fff; text-align:center}
+    .contact .links{display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:10px}
+    .chip{display:inline-flex; align-items:center; gap:10px; padding:12px 18px; border-radius:999px; border:1px solid rgba(255,255,255,.25); background:rgba(255,255,255,.06); color:#fff; font-weight:700;}
+    .chip:hover{background:rgba(255,255,255,.12)}
+    .chip svg{width:18px; height:18px}
+    footer{color:#bdbdbd; text-align:center; font-size:12px; padding:24px 0}
+  </style>
+</head>
+<body>
+
+  <!-- ===== HERO (Carousel with 3 slides) ===== -->
+  <section class="hero" id="hero">
+    <div class="slides" id="slides">
+      <div class="slide s1 active" aria-label="Hero 1"></div>
+      <div class="slide s2" aria-label="Hero 2"></div>
+      <div class="slide s3" aria-label="Hero 3"></div>
+    </div>
+
+    <button class="arrow prev" id="prev" aria-label="Նախորդ սլայդ">‹</button>
+    <button class="arrow next" id="next" aria-label="Հաջորդ սլայդ">›</button>
+
+    <div class="hero-inner">
+      <div>
+        <div class="monogram">AN</div>
+        <div class="names">Աշոտ և Նարինե</div>
+      </div>
+    </div>
+
+    <div class="date-row">
+      <div class="hr"></div>
+      <div class="date">20․10․2025</div>
+      <div class="hr"></div>
+    </div>
+
+    <!-- dots -->
+    <div class="hero-nav" id="dots" aria-label="Սլայդների նավիգացիա">
+      <button class="dot active" aria-label="Սլայդ 1"></button>
+      <button class="dot" aria-label="Սլայդ 2"></button>
+      <button class="dot" aria-label="Սլայդ 3"></button>
+    </div>
+
+    <!-- Audio button + player -->
+    <button class="audio" id="audioBtn" aria-label="Play / Pause">
+      <div class="bars"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
+    </button>
+    <audio id="music" src="assets/music.mp3" preload="auto" loop playsinline></audio>
+  </section>
+
+  <!-- ===== GREETING ===== -->
+  <section class="greeting" id="greeting">
+    <h2 class="lead">Սիրելի՛ ընկերներ և բարեկամներ</h2>
+    <p class="sub">Սրտանց հրավիրում ենք Ձեզ մեզ հետ միասին տոնելու մեր կյանքի ամենաերջանիկ ու գեղեցիկ օրը՝ մեր հարսանիքը։</p>
+  </section>
+
+  <!-- ===== DIVIDER ===== -->
+  <section class="divider" aria-hidden="true">
+    <div class="mark"><img src="assets/divider.png" alt=""></div>
+  </section>
+
+  <!-- ===== DATE BAND ===== -->
+  <section class="dateband-sec" aria-label="Օ日の մանրամասներ">
+    <div class="dateband">
+      <div class="line"></div>
+      <div class="pill">Հոկտեմբեր</div>
+      <div class="day">20</div>
+      <div class="pill">14:00</div>
+      <div class="line"></div>
+    </div>
+  </section>
+
+  <!-- ===== CALENDAR (IMAGE) ===== -->
+  <section class="calendar" id="calendar">
+    <div class="container">
+      <h2 class="title-serif">Պահպանեք օրը</h2>
+      <div class="sub">Հոկտեմբեր 2025</div>
+
+      <div class="cal-img">
+        <img src="assets/calendar.jpg" alt="Պահպանեք օրը — պատկեր">
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== COUNTDOWN ===== -->
+  <section class="count">
+    <div class="container">
+      <h2 class="title-serif">Կհանդիպենք այս կարևոր օրը մեզ հետ միասին</h2>
+      <div class="countdown" id="countdown">
+        <div class="cd-item"><div class="cd-num" id="dd">00</div><div class="cd-lab">օր</div></div>
+        <div class="cd-item"><div class="cd-num" id="hh">00</div><div class="cd-lab">ժամ</div></div>
+        <div class="cd-item"><div class="cd-num" id="mm">00</div><div class="cd-lab">րոպե</div></div>
+        <div class="cd-item"><div class="cd-num" id="ss">00</div><div class="cd-lab">վրկ</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SCHEDULE ===== -->
+  <section class="schedule" id="schedule">
+    <div class="container">
+      <div class="when">
+        <div class="hr" style="height:2px; flex:1"></div>
+        <div class="d">Հոկտեմբերի <strong>20</strong> — 14:00-ից</div>
+        <div class="hr" style="height:2px; flex:1"></div>
+      </div>
+
+      <h2 class="title-serif" style="color:#fff; margin-bottom:8px">Ժամանակացույց</h2>
+
+      <div class="timeline">
+        <div class="card">
+          <img class="icon" src="assets/church2.png" alt="">
+          <div class="time">14:00</div>
+          <div class="place">Սաղմոսավանք</div>
+          <a class="link" href="https://maps.google.com/?q=Սաղմոսավանք" target="_blank" rel="noopener">Քարտեզ</a>
+        </div>
+        <div class="card">
+          <img class="icon" src="assets/hall1.png" alt="">
+          <div class="time">17:00</div>
+          <div class="place">Ռեստորան «Նոր Դվին» (Էջմիածին)</div>
+          <a class="link" href="https://maps.google.com/?q=Էջմիածին Նոր Դվին" target="_blank" rel="noopener">Քարտեզ</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== VENUES ===== -->
+  <section class="venues" id="venues">
+    <div class="container">
+      <h2 class="title-serif">Տեղանքներ</h2>
+      <div class="vgrid">
+        <div class="venue">
+          <img src="assets/church.jpg" alt="Սաղմոսավանք">
+          <div class="title-serif" style="font-size:20px">Սաղմոսավանք</div>
+          <a class="btn dark" href="https://maps.google.com/?q=Սաղմոսավանք" target="_blank" rel="noopener">Քարտեզ</a>
+        </div>
+        <div class="venue">
+          <img src="assets/hall.jpg" alt="Էջմիածին «Նոր Դվին»">
+          <div class="title-serif" style="font-size:20px">Ռեստորան «Նոր Դվին» — Էջմիածին</div>
+          <a class="btn dark" href="https://maps.google.com/?q=Էջմիածին Նոր Դվին" target="_blank" rel="noopener">Քարտեզ</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== RSVP (FormSubmit) ===== -->
+  <section class="rsvp" id="rsvp">
+    <div class="container">
+      <h2 class="title-serif">Մեծ սիրով սպասում ենք բոլորիդ</h2>
+
+      <form class="form" id="rsvpForm">
+        <input type="hidden" name="_subject" value="RSVP — Աշոտ և Նարինե">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_to" value="narine1010i@gmail.com">
+        <input type="text" name="_honey" style="display:none">
+
+        <div class="radio" aria-label="Կկարողանաք մասնակցել">
+          <label><input type="radio" name="attend" value="Այո, սիրով կմասնակցենք" checked> Այո, սիրով կմասնակցենք</label>
+          <label><input type="radio" name="attend" value="Ցավոք՝ չեմ կարողանա մասնակցել"> Ցավոք՝ չեմ կարողանա մասնակցել</label>
+        </div>
+
+        <div class="row">
+          <input class="field" type="text" name="name" placeholder="Անուն, Ազգանուն" required>
+          <input class="field" type="number" name="guests" min="1" max="12" placeholder="Հյուրերի քանակ">
+        </div>
+        <input class="field" type="text" name="note" placeholder="Մեկնաբանություն">
+
+        <button class="btn dark submit" id="submitBtn" type="submit">Ուղարկել</button>
+        <p id="rsvpMsg" style="text-align:center; margin:8px 0 0; color:#2a7a2a; display:none;"></p>
+      </form>
+    </div>
+  </section>
+
+  <section class="confirm-note" aria-live="polite">
+    <div class="container">
+      <p class="txt">
+        Խնդրում ենք հաստատել ձեր ներկայությունը և լրացնելուց հետո փոփոխությունների դեպքում խնդրում ենք կապվել մեզ հետ։
+      </p>
+    </div>
+  </section>
+
+  <section class="details" id="details">
+    <div class="container">
+      <h2 class="title-serif">Details</h2>
+      <p class="note">
+        Հարգելի հյուրեր՝ խնդրում ենք հարսի պարի, զուգապարի ինչպես նաև տորթի կտրման արարողությունների ժամանակ
+        ուշադրություն դարձրեք երեխաներին, թույլ մի տվեք մոտենալ պարահրապարակին։
+      </p>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="container">
+      <h2 class="title-serif" style="color:#fff">Կապ մեզ հետ</h2>
+      <div class="links">
+        <a class="chip" href="https://instagram.com/amelise.invite" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+            <circle cx="12" cy="12" r="3.5"></circle>
+            <circle cx="17.5" cy="6.5" r="1"></circle>
+          </svg>
+          instagram
+        </a>
+        <a class="chip" href="https://wa.me/YOUR_NUMBER" target="_blank" rel="noopener" aria-label="WhatsApp">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M20 11.5A8.5 8.5 0 1 1 11.5 3 8.5 8.5 0 0 1 20 11.5z"></path>
+            <path d="M7 19l2.2-.6a8.4 8.4 0 0 0 2.3.3 8.5 8.5 0 0 0 8.5-8.4 8.5 8.5 0 0 0-8.5-8.4"></path>
+          </svg>
+          WhatsApp
+        </a>
+      </div>
+      <p style="opacity:.8; margin-top:10px; font-size:12px"><code></code></p>
+    </div>
+  </section>
+
+  <footer>© 2025 Amélise Invite • All rights reserved</footer>
+
+  <script>
+    // ==== Audio: autoplay handling ====
+    const audio = document.getElementById('music');
+    const audioBtn = document.getElementById('audioBtn');
+    let playing = false;
+
+    async function tryAutoplay(){
+      if(!audio) return;
+      audio.muted = false;
+      try{
+        await audio.play();
+        playing = true;
+        audioBtn.style.borderColor = "#7fff7f";
+      }catch(e){
+        audio.muted = true;
+        try{
+          await audio.play();
+          playing = true;
+          audioBtn.style.borderColor = "#ffd87a";
+          const unlock = ()=>{
+            audio.muted = false;
+            audioBtn.style.borderColor = "#7fff7f";
+            ['click','touchstart','keydown'].forEach(ev=>window.removeEventListener(ev, unlock, {once:true}));
+          };
+          ['click','touchstart','keydown'].forEach(ev=>window.addEventListener(ev, unlock, {once:true}));
+        }catch(err){
+          playing = false;
+          audioBtn.style.borderColor = "#fff";
+        }
+      }
+    }
+    document.addEventListener('DOMContentLoaded', tryAutoplay);
+
+    if(audioBtn && audio){
+      audioBtn.addEventListener('click', async ()=>{
+        try{
+          if(!playing){
+            audio.muted = false;
+            await audio.play();
+            playing = true;
+            audioBtn.style.borderColor = "#7fff7f";
+          }else{
+            audio.pause();
+            playing = false;
+            audioBtn.style.borderColor = "#fff";
+          }
+        }catch(e){ console.log(e); }
+      });
+    }
+
+    // ==== Countdown — until 14:00, 20 Oct 2025 (GMT+4) ====
+    const target = new Date('2025-10-20T14:00:00+04:00').getTime();
+    const dd = document.getElementById('dd');
+    const hh = document.getElementById('hh');
+    const mm = document.getElementById('mm');
+    const ss = document.getElementById('ss');
+    function tick(){
+      const t = target - Date.now();
+      if(t <= 0){ dd.textContent=hh.textContent=mm.textContent=ss.textContent='00'; return; }
+      const d = Math.floor(t/86400000);
+      const h = Math.floor((t%86400000)/3600000);
+      const m = Math.floor((t%3600000)/60000);
+      const s = Math.floor((t%60000)/1000);
+      dd.textContent = String(d).padStart(2,'0');
+      hh.textContent = String(h).padStart(2,'0');
+      mm.textContent = String(m).padStart(2,'0');
+      ss.textContent = String(s).padStart(2,'0');
+    }
+    tick(); setInterval(tick, 1000);
+
+    // ==== Simple Hero Carousel (with swipe) ====
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    const dots = Array.from(document.querySelectorAll('.dot'));
+    const prev = document.getElementById('prev');
+    const next = document.getElementById('next');
+    let idx = 0, autoTimer = null;
+
+    function show(i){
+      idx = (i + slides.length) % slides.length;
+      slides.forEach((s,k)=>s.classList.toggle('active', k===idx));
+      dots.forEach((d,k)=>d.classList.toggle('active', k===idx));
+      restartAuto();
+    }
+    function restartAuto(){
+      clearInterval(autoTimer);
+      autoTimer = setInterval(()=>show(idx+1), 7000);
+    }
+    prev.addEventListener('click', ()=>show(idx-1));
+    next.addEventListener('click', ()=>show(idx+1));
+    dots.forEach((d,k)=>d.addEventListener('click', ()=>show(k)));
+    restartAuto();
+
+    // touch/swipe
+    let startX=0, moved=false;
+    const hero = document.getElementById('hero');
+    hero.addEventListener('touchstart', (e)=>{ startX = e.touches[0].clientX; moved=false; }, {passive:true});
+    hero.addEventListener('touchmove', ()=>{ moved=true; }, {passive:true});
+    hero.addEventListener('touchend', (e)=>{
+      if(!moved) return;
+      const dx = e.changedTouches[0].clientX - startX;
+      if(Math.abs(dx) > 40){ dx<0 ? show(idx+1) : show(idx-1); }
+    }, {passive:true});
+
+    // ==== RSVP via FormSubmit (AJAX) ====
+    const FORM_ENDPOINT = "https://formsubmit.co/ajax/narine1010i@gmail.com";
+    const formEl = document.getElementById('rsvpForm');
+    const btnEl  = document.getElementById('submitBtn');
+    const msgEl  = document.getElementById('rsvpMsg');
+
+    formEl.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      msgEl.style.display = 'none';
+      btnEl.disabled = true;
+      const prevText = btnEl.textContent;
+      btnEl.textContent = 'Ուղարկվում է…';
+
+      const data = Object.fromEntries(new FormData(formEl).entries());
+      data._subject  = formEl.querySelector('input[name="_subject"]').value;
+      data._template = formEl.querySelector('input[name="_template"]').value;
+      data._captcha  = formEl.querySelector('input[name="_captcha"]').value;
+      const toHidden = formEl.querySelector('input[name="_to"]');
+      if (toHidden) data._to = toHidden.value;
+
+      try {
+        const res = await fetch(FORM_ENDPOINT, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "Accept": "application/json" },
+          body: JSON.stringify(data)
+        });
+        if (!res.ok) throw new Error('Network response was not ok');
+        formEl.reset();
+        btnEl.textContent = 'Ուղարկված է ✅';
+        msgEl.textContent = 'Շնորհակալություն, Ձեր RSVP-ն հաջողությամբ ուղարկվեց։';
+        msgEl.style.display = 'block';
+        setTimeout(() => { btnEl.disabled = false; btnEl.textContent = prevText; }, 2500);
+      } catch (err) {
+        console.error(err);
+        btnEl.disabled = false;
+        btnEl.textContent = prevText;
+        msgEl.style.display = 'block';
+        msgEl.style.color = '#a83232';
+        msgEl.textContent = 'Խնդիրը չստացվեց ուղարկել։ Խնդրում ենք կրկին փորձել կամ կապվել մեզ հետ։';
+      }
+    });
+  </script>
+</body>
+</html>
